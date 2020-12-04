@@ -1,0 +1,5 @@
+package math
+
+func DCT() {
+
+}
