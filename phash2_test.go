@@ -9,9 +9,9 @@ import (
 )
 
 func TestPhash2(t *testing.T) {
-	file1, _ := os.Open("./images/demo.jpg")
+	file1, _ := os.Open("./images/image1.jpeg")
 	//file2, _ := os.Open("./images/image2.jpeg")
-	file2, _ := os.Open("./images/demo2.jpg")
+	file2, _ := os.Open("./images/image2.jpeg")
 	defer file1.Close()
 	defer file2.Close()
 

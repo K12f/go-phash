@@ -18,7 +18,7 @@ func httpGetOriImage(path string) (io.ReadCloser, error) {
 	return rep.Body, err
 }
 
-func Matrix32(path string) (matrix32 [32][32]float64) {
+func Matrix64(path string) (matrix64 [64][64]float64) {
 	var src image.Image
 	var err error
 	// 是否是远程图片
@@ -35,7 +35,7 @@ func Matrix32(path string) (matrix32 [32][32]float64) {
 		log.Fatalf("failed to open image: %v", err)
 	}
 	//缩小尺寸 为了后边的步骤计算简单些
-	src = imaging.Resize(src, 32, 32, imaging.Lanczos)
+	src = imaging.Resize(src, 64, 64, imaging.Lanczos)
 
 	//for w := 0; w <= src.Bounds().Max.X; w++ {
 	//    for h := 0; h <= src.Bounds().Max.Y; h++ {
@@ -59,7 +59,7 @@ func Matrix32(path string) (matrix32 [32][32]float64) {
 			// Y = 0.299R’ + 0.587G’ + 0.114B'
 			pixel := 0.299*float64(r) + 0.587*float64(g) + 0.114*float64(b)
 			//fmt.Println(r)
-			matrix32[h][w] = pixel
+			matrix64[h][w] = pixel
 		}
 	}
 	return
