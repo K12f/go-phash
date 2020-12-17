@@ -65,7 +65,7 @@ func DCT(dctMa [64][64]float64, dctMap [64][64]float64) [64][64]float64 {
 			for k := 0; k < l; k++ {
 				t += dctMapTemp[i][k] * dctMa[j][k]
 			}
-			dctMap[i][j] = math.Round(t)
+			dctMap[i][j] = t
 		}
 	}
 	return dctMap
@@ -82,7 +82,7 @@ func average(dctMap [8][8]float64) float64 {
 	return sum / (float64(l) * float64(l))
 }
 
-func compare(average float64, dctMap [64][64]float64) (hash []int) {
+func compare(average float64, dctMap [8][8]float64) (hash []int) {
 	for i := 0; i < 8; i++ {
 		for j := 0; j < 8; j++ {
 			if dctMap[i][j] >= average {
@@ -113,6 +113,6 @@ func Phash(path string) (hash []int) {
 	}
 
 	average := average(dctMap8)
-	hash = compare(average, dctMap)
+	hash = compare(average, dctMap8)
 	return hash
 }
