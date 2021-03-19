@@ -3,7 +3,6 @@ package phash
 import (
 	"github.com/disintegration/imaging"
 	"image"
-	"image/color"
 	"io"
 	"log"
 	"net/http"
@@ -52,9 +51,7 @@ func Matrix64(path string) (matrix64 [64][64]float64) {
 	for h := 0; h < height; h++ {
 		for w := 0; w < width; w++ {
 			pointColor := gray.At(w, h)
-			r := pointColor.(color.NRGBA).R
-			g := pointColor.(color.NRGBA).G
-			b := pointColor.(color.NRGBA).B
+			r, g, b, _ := pointColor.RGBA()
 
 			// RGB 转化 YUV 的公式（经过 PAL制式 CRT伽玛校正）如下：
 			// Y = 0.299R’ + 0.587G’ + 0.114B'
