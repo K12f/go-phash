@@ -18,6 +18,7 @@ func httpGetOriImage(path string) (io.ReadCloser, error) {
 	return rep.Body, err
 }
 
+// https://zh.wikipedia.org/zh/YUV
 func Matrix64(path string) (matrix64 [64][64]float64) {
 	var src image.Image
 	var err error
